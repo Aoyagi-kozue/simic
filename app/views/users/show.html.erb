@@ -1,2 +1,13 @@
 <h1>Users#show</h1>
 <p>Find me in app/views/users/show.html.erb</p>
+<div class="profile-content">
+  <div class="prof-image">
+  	<%= image_tag @user.prof_image.thumb.url, size:'50x50' %>
+  </div>
+  <div class="name">
+    <%= @user.nickname %>
+  </div>
+  <div class="messege">
+  	<p>メッセージ</p>
+    <%= @user.message %>
+  </div>
