@@ -1,0 +1,45 @@
+<h1>New Comic</h1>
+<table class="table">
+	<thead>
+		<tr>
+			<th>タイトル</th>
+			<th>登録</th>
+		</tr>
+	</thead>
+<div class="w3-row-padding w3-padding-16 w3-center">
+
+	<tbody>
+		<% @comics.each do |comic| %>
+
+			<tr>
+				<td>
+					<%= image_tag comic["volumeInfo"]["imageLinks"]["smallThumbnail"] %>
+					<br>
+					<%= comic["volumeInfo"]["title"] %>
+					<%= comic["volumeInfo"]["authors"] %>
+					<%= comic["volumeInfo"]["publisher"] %>
+					<%#= image_tag comic["imageLinks"]["smallThumbnail"] %>
+				</td>
+
+				<td>
+					<%= form_for @comic do |f| %>
+						<%#= f.text_field :title,value: "#{comic["volumeInfo"]["title"]}"%>
+						<%= f.hidden_field :title, :value =>  "#{comic["volumeInfo"]["title"]}" %>
+						<%#= f.hidden_field :author, :value =>  "#{comic["volumeInfo"]["authors"]}" %>
+						<%= f.hidden_field :author, :value =>   "#{comic["volumeInfo"]["authors"]}" %>
+						<%= f.hidden_field :publisher, :value =>  "#{comic["volumeInfo"]["publisher"]}" %>
+						<span class="form-group-btn">
+							<%= f.submit '登録', :name => nil, class: "btn btn-default search-btn" %>
+						</span>
+					<% end %>
+				</td>
+			</tr>
+		<% end %>
+	</tbody>
+</table>
+	<div>
+
+	</div>
+</div>
+
+<%= link_to 'Back', comics_path %>

@@ -1,0 +1,4 @@
+# Logfile created on 2019-11-14 13:46:04 +0900 by logger.rb/56438
+E, [2019-11-14T13:46:04.513457 #6841] ERROR -- : end of file reached
+E, [2019-11-14T13:46:34.761418 #6847] ERROR -- : undefined local variable or method `respose' for main:Object
+Did you mean?  response

@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Fav Reviews</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>User</th>
+      <th>Review</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @fav_reviews.each do |fav_review| %>
+      <tr>
+        <td><%= fav_review.user_id %></td>
+        <td><%= fav_review.review_id %></td>
+        <td><%= link_to 'Show', fav_review %></td>
+        <td><%= link_to 'Edit', edit_fav_review_path(fav_review) %></td>
+        <td><%= link_to 'Destroy', fav_review, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Fav Review', new_fav_review_path %>

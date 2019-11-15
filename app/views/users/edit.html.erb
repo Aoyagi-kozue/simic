@@ -1,0 +1,17 @@
+<div class="profile-content">
+  <%= form_for @user, html: { multipart: true } do |f| %>
+  <div class="prof-image">
+  	<%= image_tag @user.prof_image.thumb.url, size:'50x50' %>
+    <%= f.file_field :prof_image id: :user_img %>
+    <%= f.hidden_field :prof_image_cache %>
+  </div>
+  <div class="name">
+    <%= f.text_field :nickname %>
+  </div>
+  <div class="messege">
+  	<p>メッセージ</p>
+    <%= f.text_field :message %>
+  </div>
+  <%= f.submit "更新"%>
+  <% end %>
+</div>

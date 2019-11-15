@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Comic:</strong>
+  <%= @cover_img.comic_id %>
+</p>
+
+<p>
+  <strong>Cover img:</strong>
+  <%= @cover_img.cover_img %>
+</p>
+
+<%= link_to 'Edit', edit_cover_img_path(@cover_img) %> |
+<%= link_to 'Back', cover_imgs_path %>

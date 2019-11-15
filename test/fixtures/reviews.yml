@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user_id: 1
+  comic_id: 1
+  review_text: MyText
+  review_title: MyString
+  netabare: 1
+
+two:
+  user_id: 1
+  comic_id: 1
+  review_text: MyText
+  review_title: MyString
+  netabare: 1

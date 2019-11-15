@@ -1,0 +1,31 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Mylists</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>User</th>
+      <th>Comic</th>
+      <th>Author</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @mylists.each do |mylist| %>
+      <tr>
+        <td><%= mylist.user_id %></td>
+        <td><%= mylist.comic_id %></td>
+        <td><%= mylist.author_id %></td>
+        <td><%= link_to 'Show', mylist %></td>
+        <td><%= link_to 'Edit', edit_mylist_path(mylist) %></td>
+        <td><%= link_to 'Destroy', mylist, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Mylist', new_mylist_path %>
