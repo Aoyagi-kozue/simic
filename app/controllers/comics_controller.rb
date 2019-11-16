@@ -13,6 +13,9 @@ class ComicsController < ApplicationController
   # GET /comics/1
   # GET /comics/1.json
   def show
+    @comic = Comic.find(params[:id])
+    @user = User.find(@comic.user.id)
+    @review = Review.new
   end
 
   def search
@@ -21,7 +24,9 @@ class ComicsController < ApplicationController
     # uri = "https://www.googleapis.com/books/v1/volumes?q=isbn:4839962227"
     uri = "https://www.googleapis.com/books/v1/volumes?q="+keyword
     params = {
-     format: "json"
+     format: "json",
+     Country: "JP",
+     maxResults: 40
     }
 
     client = HTTPClient.new
@@ -56,6 +61,8 @@ class ComicsController < ApplicationController
   # POST /comics.json
   def create
     @comic = Comic.new(comic_params)
+    @comic.user_id = current_user.id
+    @user = current_user
 
     respond_to do |format|
       if @comic.save
@@ -100,6 +107,6 @@ class ComicsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def comic_params
-      params.require(:comic).permit(:author, :publisher, :title)
+      params.require(:comic).permit(:author, :publisher, :title, :cover_img)
     end
 end

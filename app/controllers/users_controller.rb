@@ -1,4 +1,8 @@
 class UsersController < ApplicationController
+
+  # before_action :authenticate_user!, except: [:top, :about]
+  # before_action :cuser, only: [:update, :edit]
+
   def show
   	@user = User.find(params[:id])
   end

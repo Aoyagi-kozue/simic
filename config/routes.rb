@@ -3,14 +3,9 @@ Rails.application.routes.draw do
 
   resources :evaluations
   resources :fav_reviews
-  resources :reviews
   resources :tags
   resources :comic_tags
-  resources :cover_imgs
-  resources :genres
-  resources :labels
   resources :publishers
-  resources :authors
   resources :follows
 
 	devise_for :users
@@ -25,6 +20,8 @@ Rails.application.routes.draw do
 	end
 
 	resources :comics do
+    resource :reviews, only: [:create]
+
     collection do
     	get 'search', to: 'comics#search'
     end

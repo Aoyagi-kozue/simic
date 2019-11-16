@@ -15,18 +15,23 @@
 				<td>
 					<%= image_tag comic["volumeInfo"]["imageLinks"]["smallThumbnail"] %>
 					<br>
-					<%= comic["volumeInfo"]["title"] %>
-					<%= comic["volumeInfo"]["authors"] %>
-					<%= comic["volumeInfo"]["publisher"] %>
-					<%#= image_tag comic["imageLinks"]["smallThumbnail"] %>
+					<p> タイトル
+					<%= comic["volumeInfo"]["title"] %> </p>
+					<p> 作者名
+					<% if comic["volumeInfo"]["authors"].present? %>
+					<%= comic["volumeInfo"]["authors"].join(", ")%>
+					<% end %>　</p>
+					<p> 出版社
+					<%= comic["volumeInfo"]["publisher"] %> </p>
 				</td>
 
 				<td>
 					<%= form_for @comic do |f| %>
-						<%#= f.text_field :title,value: "#{comic["volumeInfo"]["title"]}"%>
+					  <%= f.hidden_field :cover_img, :value => "#{comic["volumeInfo"]["imageLinks"]["smallThumbnail"]}" %>
 						<%= f.hidden_field :title, :value =>  "#{comic["volumeInfo"]["title"]}" %>
-						<%#= f.hidden_field :author, :value =>  "#{comic["volumeInfo"]["authors"]}" %>
-						<%= f.hidden_field :author, :value =>   "#{comic["volumeInfo"]["authors"]}" %>
+						<% if comic["volumeInfo"]["authors"].present? %>
+						<%= f.hidden_field :author, :value =>   "#{comic["volumeInfo"]["authors"].join(", ")}" %>
+						<% end %>
 						<%= f.hidden_field :publisher, :value =>  "#{comic["volumeInfo"]["publisher"]}" %>
 						<span class="form-group-btn">
 							<%= f.submit '登録', :name => nil, class: "btn btn-default search-btn" %>

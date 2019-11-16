@@ -16,5 +16,38 @@
   <%= @comic.title %>
 </p>
 
+<p>
+  <strong>Cover_img:</strong>
+  <% if @comic.cover_img? %>
+    <%= image_tag @comic.cover_img %>
+  <% else %>
+    <%= image_tag ("/images/defaultcomic.png") %>
+  <% end %>
+</p>
+
+<% @comic.reviews.each do |f| %>
+<div class="review-text">
+    <div class="review-author clearfix">
+        <%= link_to f.user.nickname, user_path(@user.id)  %></a>
+        <span class="review-meta">
+          <span class="review-date"><%= f.created_at.strftime('%Y/%m/%d') %></span>
+        </span>
+    </div>
+    <div class="review-entry"><%= f.review_text %>
+    </div>
+</div>
+<% end %>
+
+<% if @user.id==current_user.id %>
+  <%= form_for [@comic,@review] do |f| %>
+      <div class="row">
+          <div class="col-sm-12">
+              <%= f.text_area :review_text, rows:'5', class: "form-control",placeholder: "レビューをここに" %>
+          </div>
+      </div>
+      <%= f.submit "送信する", class: "btn btn-lg btn-base-1 mt-20 pull-right" %>
+  <% end %>
+<% end %>
+
 <%= link_to 'Edit', edit_comic_path(@comic) %> |
 <%= link_to 'Back', comics_path %>

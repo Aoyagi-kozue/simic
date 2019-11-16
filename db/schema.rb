@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_11_15_074753) do
+ActiveRecord::Schema.define(version: 2019_11_16_075903) do
 
   create_table "comic_tags", force: :cascade do |t|
     t.integer "comic_id"
@@ -26,13 +26,7 @@ ActiveRecord::Schema.define(version: 2019_11_15_074753) do
     t.string "author"
     t.string "publisher"
     t.text "cover_img"
-  end
-
-  create_table "cover_imgs", force: :cascade do |t|
-    t.integer "comic_id"
-    t.text "cover_img"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.integer "user_id"
   end
 
   create_table "evaluations", force: :cascade do |t|
