@@ -15,14 +15,16 @@ class ReviewsController < ApplicationController
   def create
     @comic = Comic.find(params[:comic_id])
     @review = current_user.reviews.new(review_params)
+    @review.tag_list = params[:tag_list]
     @review.comic_id = @comic.id
-
+    p @review
+    p review_params
     respond_to do |format|
       if @review.save
         format.html { redirect_to comic_path(@comic), notice: 'Review was successfully created.' }
         format.json { render :show, status: :created, location: @review }
       else
-        format.html { render :new }
+        format.html { render 'comics/show' }
         format.json { render json: @review.errors, status: :unprocessable_entity }
       end
     end
@@ -46,6 +48,7 @@ class ReviewsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def review_params
-      params.require(:review).permit(:user_id, :comic_id, :review_text, :review_title, :netabare)
+      params.require(:review).permit(:user_id, :comic_id, :review_text, :review_title, :netabare, :tag_list)
     end
+
 end

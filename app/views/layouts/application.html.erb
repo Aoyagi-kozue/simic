@@ -11,14 +11,14 @@
   </head>
 
   <body>
-    <header class="navbar navbar-fixed-top navbar-inverse" >
+    <header class="navbar fixed-top navbar-light" style="background-color: #fced6a;" >
       <div class="container">
         <nav class="navbar navbar-nav navbar-left">
           <span class="Simic">Simic</span>
         </nav>
 
         <nav id="slidemenu">
-            <ul class="nav navbar-nav navbar-right">
+            <ul class="nav nav-pills justify-content-end navbar-right">
               <% if user_signed_in? %>
                 <li class="">
                   <%= link_to comics_path(current_user),class: 'btn btn-light' do %>

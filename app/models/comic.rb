@@ -1,6 +1,5 @@
 class Comic < ApplicationRecord
 
-
   # mount_uploader :cover_img, CoverImageUploader
 
   has_many :mylists

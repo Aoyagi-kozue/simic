@@ -15,7 +15,10 @@ class ComicsController < ApplicationController
   def show
     @comic = Comic.find(params[:id])
     @user = User.find(@comic.user.id)
-    @review = Review.new
+    @reviewnew = Review.new
+    # @reviews = Review.all
+    # @review = @comic.reviews
+
   end
 
   def search

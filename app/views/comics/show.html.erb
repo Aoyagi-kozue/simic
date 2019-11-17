@@ -26,7 +26,12 @@
 </p>
 
 <% @comic.reviews.each do |f| %>
-<div class="review-text">
+  <div class="tag-content">
+    <% f.tag_list.each do |tag| %>
+      <span class="label label-primary"><%= tag %></span>
+    <% end %>
+  </div>
+  <div class="review-text">
     <div class="review-author clearfix">
         <%= link_to f.user.nickname, user_path(@user.id)  %></a>
         <span class="review-meta">
@@ -35,17 +40,21 @@
     </div>
     <div class="review-entry"><%= f.review_text %>
     </div>
-</div>
+  </div>
 <% end %>
 
 <% if @user.id==current_user.id %>
-  <%= form_for [@comic,@review] do |f| %>
-      <div class="row">
-          <div class="col-sm-12">
-              <%= f.text_area :review_text, rows:'5', class: "form-control",placeholder: "レビューをここに" %>
-          </div>
+  <%= form_for [@comic,@reviewnew] do |f| %>
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="field form-group form-group-lg">
+          <%= f.label :tag_list, 'タグをカンマ(,)区切りで入力してください', class: "sr-only control-label" %>
+          <%= text_field_tag 'tag_list', f.object.tag_list.join(","), class: "form-control" %>
+        </div>
+          <%= f.text_area :review_text, rows:'5', class: "form-control",placeholder: "レビューをここに" %>
       </div>
-      <%= f.submit "送信する", class: "btn btn-lg btn-base-1 mt-20 pull-right" %>
+    </div>
+    <%= f.submit "送信する", class: "btn btn-lg btn-base-1 mt-20 pull-right" %>
   <% end %>
 <% end %>
 
