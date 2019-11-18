@@ -20,7 +20,13 @@ class UsersController < ApplicationController
   	end
   end
 
-  def confirm
+  def destroy
+    user = User.find(params[:id])
+    user.destroy
+    redirect_to  withdraw_path
+  end
+
+  def withdraw
   end
 
 

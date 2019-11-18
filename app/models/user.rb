@@ -5,7 +5,7 @@ class User < ApplicationRecord
 
   mount_uploader :prof_image, ProfImageUploader
 
-  has_many :comic
+  has_many :comic, dependent: :destroy
 
   has_many :follows
   has_many :mylists

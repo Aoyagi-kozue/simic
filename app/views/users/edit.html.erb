@@ -1,13 +1,13 @@
 <div class="profile-content">
   <%= form_for @user, html: { multipart: true } do |f| %>
   <div class="prof-image">
-  <% if @user.image? %>
+  <% if @user.prof_image? %>
     <%= image_tag @user.image.url %>
   <% else %>
-    <%= image_tag("/images/defaulu.png") %>
+    <%= image_tag("/images/default.png") %>
   <% end %>
   	<%#= image_tag @user.prof_image.thumb.url, size:'50x50' %>
-    <%= f.file_field :prof_image id: :user_img %>
+    <%= f.file_field :prof_image, id: :user_img %>
     <%= f.hidden_field :prof_image_cache %>
   </div>
   <div class="name">

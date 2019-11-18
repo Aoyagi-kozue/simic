@@ -9,3 +9,59 @@
   	<p>メッセージ</p>
     <%= @user.message %>
   </div>
+</div>
+
+  <% if @user.id==current_user.id %>
+  <%= link_to "編集",edit_user_path(@user), class: "btn btn-success" %>
+  <button type="button" class="btn btn-link" data-toggle="modal" data-target="#myModal" style="font-size: 12px;">
+    退会希望
+  </button>
+  <% end %>
+
+
+<!-- 切り替えボタンの設定 -->
+
+
+<!-- モーダルの設定 -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">退会について 注意事項</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="閉じる">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>退会後は、以下の機能がご利用になれません。</p></br>
+          <ul>
+            <li>Simic へログインすることができなくなります。</li>
+            <li>Simic のすべての機能を利用することができなくなります。</li>
+            <li>すべてのユーザーが、あなたのプロフィールページを閲覧することができなくなります。</li>
+          </ul>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">キャンセル</button>
+         <%= link_to "退会する",user_path(@user), method: :delete, class: "btn btn-danger" %>
+      </div><!-- /.modal-footer -->
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+
+<style>
+
+  .modal-body {
+    height: 200px;
+    margin:0 auto;
+    text-align:left;
+  }
+
+  .modal-body p {
+    text-align: center;
+  }
+
+  ul li {
+    font-size: 13px;
+  }
+</style>

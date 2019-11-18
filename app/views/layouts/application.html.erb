@@ -33,14 +33,19 @@
                   <% end %>
                 </li>
                 <li class="">
-                  <%= link_to comics_path,class: 'btn btn-light' do %>
-                    <span class="glyphicon glyphicon-book" aria-hidden="true"></span> Books
+                  <%= link_to new_comic_path, class: 'btn btn-light' do %>
+                    <span class="glyphicon glyphicon-user" aria-hidden="true"></span> レビューする
                   <% end %>
                 </li>
                 <li class="">
                   <%= link_to destroy_user_session_path, method: :delete, class: 'btn btn-light' do %>
                     <span class="glyphicon glyphicon-log-out" aria-hidden="true"></span> logout
                   <% end %>
+                </li>
+                <li class="">
+                  <p> こんにちは！
+                  <%=link_to user_path(current_user) do %> <%= current_user.nickname %>
+                  <% end %> さん</p>
                 </li>
               <% else %>
                 <li class="">

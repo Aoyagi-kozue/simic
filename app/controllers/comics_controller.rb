@@ -18,7 +18,6 @@ class ComicsController < ApplicationController
     @reviewnew = Review.new
     # @reviews = Review.all
     # @review = @comic.reviews
-
   end
 
   def search
@@ -44,22 +43,6 @@ class ComicsController < ApplicationController
     @comic = Comic.new
   end
 
-  # GET /comics/new
-  def new
-    # @comic = GoogleBooks.search(params[:search],{:count => 20}).map{|googlebook| 
-    #   comic = Comic.new
-    #   comic.title = googlebook.title
-    #   comic.author.author = googlebook.authors
-    #   comic.publisher.publisher = googlebook.publisher
-    #   comic.cover_img.cover_img = googlebook.image_link
-    #   comic
-    # }
-  end
-
-  # GET /comics/1/edit
-  def edit
-  end
-
   # POST /comics
   # POST /comics.json
   def create
@@ -69,7 +52,7 @@ class ComicsController < ApplicationController
 
     respond_to do |format|
       if @comic.save
-        format.html { redirect_to @comic, notice: 'Comic was successfully created.' }
+        format.html { redirect_to new_comic_reviews_path(@comic), notice: 'Comic was successfully created.' }
         format.json { render :show, status: :created, location: @comic }
       else
         format.html { render :new }
