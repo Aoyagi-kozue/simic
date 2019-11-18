@@ -1,12 +1,11 @@
 <div class="profile-content">
   <%= form_for @user, html: { multipart: true } do |f| %>
   <div class="prof-image">
-  <% if @user.prof_image? %>
-    <%= image_tag @user.image.url %>
+  <% if @user.prof_image.present? %>
+    <%= image_tag @user.image.url, id: :img_prev %>
   <% else %>
-    <%= image_tag("/images/default.png") %>
+    <%= image_tag"default.png", id: :img_prev, :size => '100x100' %>
   <% end %>
-  	<%#= image_tag @user.prof_image.thumb.url, size:'50x50' %>
     <%= f.file_field :prof_image, id: :user_img %>
     <%= f.hidden_field :prof_image_cache %>
   </div>
@@ -15,8 +14,25 @@
   </div>
   <div class="messege">
   	<p>メッセージ</p>
-    <%= f.text_field :message %>
+    <%= f.text_area :message %>
   </div>
   <%= f.submit "更新"%>
   <% end %>
 </div>
+
+<script type="text/javascript">
+  $(function() {
+    function readURL(input) {
+        if (input.files && input.files[0]) {
+        var reader = new FileReader();
+        reader.onload = function (e) {
+    $('#img_prev').attr('src', e.target.result);
+        }
+        reader.readAsDataURL(input.files[0]);
+        }
+    }
+    $("#user_img").change(function(){
+        readURL(this);
+    });
+  });
+</script>

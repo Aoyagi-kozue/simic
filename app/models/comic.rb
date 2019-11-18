@@ -8,7 +8,7 @@ class Comic < ApplicationRecord
   has_many :reads
   has_many :recommends
   has_many :evaluations
-  has_many :reviews, dependent: :destroy
+  has_one :review, dependent: :destroy
 
   has_many :users, through: :mylists
   has_many :users, through: :reads

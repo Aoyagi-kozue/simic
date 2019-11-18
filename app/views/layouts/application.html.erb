@@ -18,6 +18,15 @@
           <span class="Simic">Simic</span>
         </nav>
 
+        <div class=”form-group”>
+          <%= form_tag(search_comics_path, method: :'get') do %>
+            <%= text_field_tag :search %>
+            <span class="form-group-btn">
+              <%= submit_tag '検索', :name => nil, class: "btn btn-sm search-btn" %>
+            </span>
+          <% end %>
+        </div>
+
         <nav id="slidemenu">
             <ul class="nav nav-pills justify-content-end navbar-right">
               <% if user_signed_in? %>
