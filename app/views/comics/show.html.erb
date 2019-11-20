@@ -20,9 +20,18 @@
   <% if @comic.cover_img? %>
     <%= image_tag @comic.cover_img %>
   <% else %>
-    <%= image_tag ("/images/defaultcomic.png") %>
+    <%= image_tag ("defaultcomic.png"), :size => '150x150' %>
   <% end %>
 </p>
+
+ <div id="star-rate-<%= @comic.review.id %>"></div>
+  <script>
+  $('#star-rate-<%= @comic.review.id %>').raty({
+    path: '/assets',
+    readOnly: true,
+    score: <%= @comic.review.star %>,
+  });
+  </script>
 
   <div class="review-text">
     <div class="review-author clearfix">

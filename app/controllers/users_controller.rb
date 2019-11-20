@@ -5,6 +5,7 @@ class UsersController < ApplicationController
 
   def show
   	@user = User.find(params[:id])
+  	@comics = @user.comics.order(id: :desc)
   end
 
   def edit

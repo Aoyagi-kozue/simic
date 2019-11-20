@@ -23,33 +23,33 @@ class ComicsController < ApplicationController
   def show
     @comic = Comic.find(params[:id])
     @user = User.find(@comic.user.id)
-    @reviewnew = Review.new
-    # @reviews = Review.all
-    # @review = @comic.reviews
   end
 
   def search
-    keyword = params[:search]
-    # @results = request("https://www.googleapis.com/books/v1/volumes?q="+keyword)
-    # uri = "https://www.googleapis.com/books/v1/volumes?q=isbn:4839962227"
-    uri = "https://www.googleapis.com/books/v1/volumes?q=intitle:"+keyword+"&country=JP&langRestrict=ja&orderBy=newest"
-    params = {
-     format: "json",
-     Country: "JP",
-     maxResults: 40
-    }
+    if params[:search].blank?
+      render '/comics/new'
+    else
+      keyword = params[:search]
+      # @results = request("https://www.googleapis.com/books/v1/volumes?q="+keyword)
+      # uri = "https://www.googleapis.com/books/v1/volumes?q=isbn:4839962227"
+      uri = "https://www.googleapis.com/books/v1/volumes?q=intitle:"+keyword+"&country=JP&langRestrict=ja&orderBy=newest"
+      params = {
+       format: "json",
+       Country: "JP",
+       maxResults: 40
+      }
 
-    client = HTTPClient.new
-    request =  client.get(uri,params)
-    response = JSON.parse(request.body)
-    @comics = response["items"]
+      client = HTTPClient.new
+      request =  client.get(uri,params)
+      response = JSON.parse(request.body)
+      @comics = response["items"]
 
-    # @titles = []
-    # @results.each do |item|
-    #   @titles.push item.title
-    # end
-    # @form = Googlebook.new(params.require(:googlebook_find_form))
-    @comic = Comic.new
+      # @titles = []
+      # @results.each do |item|
+      #   @titles.push item.title
+      # end
+      @comic = Comic.new
+    end
   end
 
   # POST /comics
