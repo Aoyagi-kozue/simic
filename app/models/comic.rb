@@ -1,6 +1,6 @@
 class Comic < ApplicationRecord
 
-  # mount_uploader :cover_img, CoverImageUploader
+  acts_as_tagger
 
   has_many :mylists
   has_many :comic_tags
@@ -20,7 +20,10 @@ class Comic < ApplicationRecord
 
 
   def self.search(search)
-    where('title LIKE ?', "%#{search}%")
+    if search
+      comic = Comic.joins(reviews: :tags)
+      .where("(products.title like ?) or (artists.artist_name like ?) or (genres.genre_name like ?) or (record_musics.song_name like ?) or (labels.label_name like ?)", "%#{search}%","%#{search}%","%#{search}%","%#{search}%","%#{search}%")
+    end
   end
 
 end

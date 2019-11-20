@@ -10,29 +10,43 @@
 
 	<tbody>
 		<% @comics.each do |comic| %>
-
 			<tr>
 				<td>
-					<%= image_tag comic["volumeInfo"]["imageLinks"]["smallThumbnail"] %>
+					<% if comic["volumeInfo"]["imageLinks"].present? %>
+					  <%= image_tag comic["volumeInfo"]["imageLinks"]["smallThumbnail"] %>
+					<% else %>
+					  <%= image_tag ("defaultcomic.png"), :size => '150x150' %>
+					<% end %>
 					<br>
+<%# binding pry %>
 					<p> タイトル
-					<%= comic["volumeInfo"]["title"] %> </p>
+					<% if comic["volumeInfo"]["title"].present? %>
+					  <%= comic["volumeInfo"]["title"] %>
+					<% end %> </p>
 					<p> 作者名
 					<% if comic["volumeInfo"]["authors"].present? %>
-					<%= comic["volumeInfo"]["authors"].join(", ")%>
+					  <%= comic["volumeInfo"]["authors"].join(", ")%>
 					<% end %>　</p>
 					<p> 出版社
-					<%= comic["volumeInfo"]["publisher"] %> </p>
+					<% if comic["volumeInfo"]["publisher"].present? %>
+					  <%= comic["volumeInfo"]["publisher"] %>
+					<% end %> </p>
 				</td>
 
 				<td>
 					<%= form_for @comic do |f| %>
-					  <%= f.hidden_field :cover_img, :value => "#{comic["volumeInfo"]["imageLinks"]["smallThumbnail"]}" %>
-						<%= f.hidden_field :title, :value =>  "#{comic["volumeInfo"]["title"]}" %>
-						<% if comic["volumeInfo"]["authors"].present? %>
-						<%= f.hidden_field :author, :value =>   "#{comic["volumeInfo"]["authors"].join(", ")}" %>
+					  <% if comic["volumeInfo"]["imageLinks"].present? %>
+					    <%= f.hidden_field :cover_img, :value => "#{comic["volumeInfo"]["imageLinks"]["smallThumbnail"]}" %>
+					  <% end %>
+					  <% if comic["volumeInfo"]["title"].present? %>
+						  <%= f.hidden_field :title, :value =>  "#{comic["volumeInfo"]["title"]}" %>
 						<% end %>
-						<%= f.hidden_field :publisher, :value =>  "#{comic["volumeInfo"]["publisher"]}" %>
+						<% if comic["volumeInfo"]["authors"].present? %>
+						  <%= f.hidden_field :author, :value =>   "#{comic["volumeInfo"]["authors"].join(", ")}" %>
+						<% end %>
+						<% if comic["volumeInfo"]["publisher"].present? %>
+						  <%= f.hidden_field :publisher, :value =>  "#{comic["volumeInfo"]["publisher"]}" %>
+						<% end %>
 						<span class="form-group-btn">
 							<%= f.submit '登録', :name => nil, class: "btn btn-default search-btn" %>
 						</span>

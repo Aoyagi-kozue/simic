@@ -7,7 +7,15 @@ class ComicsController < ApplicationController
   # GET /comics
   # GET /comics.json
   def index
-    @comics = Comic.page(params[:page]).per(5).order(created_at: :desc)
+    if params[:search].blank?
+      @comics = Comic.page(params[:page]).per(5).order(created_at: :desc)
+    else
+      title = Comic.where("title LIKE ?", "%#{params[:search]}%")
+      author = Comic.where("author LIKE ?", "%#{params[:search]}%")
+      tagname =  Comic.joins(review: :tags).where("name LIKE ?", "%#{params[:search]}%")
+       a = ( title | author )
+       @comics = ( a | tagname )
+    end
   end
 
   # GET /comics/1
@@ -22,9 +30,9 @@ class ComicsController < ApplicationController
 
   def search
     keyword = params[:search]
-    # @results = request("https://www.googleapis.com/books/v1/volumes?q="+keyword)    
+    # @results = request("https://www.googleapis.com/books/v1/volumes?q="+keyword)
     # uri = "https://www.googleapis.com/books/v1/volumes?q=isbn:4839962227"
-    uri = "https://www.googleapis.com/books/v1/volumes?q="+keyword
+    uri = "https://www.googleapis.com/books/v1/volumes?q=intitle:"+keyword+"&country=JP&langRestrict=ja&orderBy=newest"
     params = {
      format: "json",
      Country: "JP",
@@ -35,6 +43,7 @@ class ComicsController < ApplicationController
     request =  client.get(uri,params)
     response = JSON.parse(request.body)
     @comics = response["items"]
+
     # @titles = []
     # @results.each do |item|
     #   @titles.push item.title
