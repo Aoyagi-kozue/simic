@@ -33,24 +33,26 @@
   });
   </script>
 
-  <div class="review-text">
-    <div class="review-author clearfix">
-      <%= link_to @comic.review.user.nickname, user_path(@user.id) %>
-      <span class="review-meta">
-        <span class="review-date"><%= @comic.review.created_at.strftime('%Y/%m/%d') %></span>
-      </span>
-    </div>
-    <div class="tag-content">
-        <span class="label label-primary"><%= @comic.review.tag_list %></span>
-    </div>
-    <div class="review-entry">
-      <%= @comic.review.review_text %>
-    </div>
+<div class="review-text">
+  <div class="review-author clearfix">
+    <%= link_to @comic.review.user.nickname, user_path(@user.id) %>
+    <span class="review-meta">
+      <span class="review-date"><%= @comic.review.created_at.strftime('%Y/%m/%d') %></span>
+    </span>
   </div>
+  <div class="tag-content">
+      <span class="label label-primary"><%= @comic.review.tag_list %></span>
+  </div>
+  <div class="review-entry">
+    <%= @comic.review.review_text %>
+  </div>
+</div>
 
-<button type="button" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#myModal">
-  投稿削除
-</button>
+<% if @user.id==current_user.id %>
+  <button type="button" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#myModal">
+    投稿削除
+  </button>
+<% end %>
 <%= link_to '一覧へ', comics_path, class: "btn btn-sm btn-outline-primary" %>
 
 

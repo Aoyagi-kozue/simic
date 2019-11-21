@@ -20,7 +20,7 @@
 
 <div class="search-box">
     <%= form_tag(comics_path,method: :get) do %>
-        <%= text_field_tag :search, "", placeholder: "みんなの目標を検索" %>
+        <%= text_field_tag :search, "", placeholder: "タイトル / 作家名 / タグを検索", :size=>"30" %>
         <%= button_tag '<i class="fa fa-search"></i>'.html_safe, type: 'submit', :name => nil %>
     <% end %>
 </div>
@@ -65,7 +65,7 @@
                 </li>
               <% else %>
                 <li class="">
-                  <%= link_to users_path,class: 'btn btn-light' do %>
+                  <%= link_to comics_path(current_user),class: 'btn btn-light' do %>
                   <span class="glyphicon glyphicon-home" aria-hidden="true"></span> Home
                   <% end %>
                 </li>

@@ -1,5 +1,5 @@
 class ReviewsController < ApplicationController
-
+  before_action :authenticate_user!
   before_action :current_user, only: [:new, :create]
 
   # GET /reviews/new

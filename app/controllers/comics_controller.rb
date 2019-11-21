@@ -1,4 +1,5 @@
 class ComicsController < ApplicationController
+  before_action :authenticate_user!, except: [:index]
   before_action :set_comic, only: [:show, :edit, :update, :destroy]
 
   require 'net/http'
@@ -8,13 +9,15 @@ class ComicsController < ApplicationController
   # GET /comics.json
   def index
     if params[:search].blank?
-      @comics = Comic.page(params[:page]).per(5).order(created_at: :desc)
+      @comics = Comic.page(params[:page]).per(10).order(created_at: :desc)
+# binding.pry
     else
-      title = Comic.where("title LIKE ?", "%#{params[:search]}%")
-      author = Comic.where("author LIKE ?", "%#{params[:search]}%")
-      tagname =  Comic.joins(review: :tags).where("name LIKE ?", "%#{params[:search]}%")
+      title = Comic.where("title LIKE ?", "%#{params[:search]}%").order(created_at: :desc)
+      author = Comic.where("author LIKE ?", "%#{params[:search]}%").order(created_at: :desc)
+      tagname =  Comic.joins(review: :tags).where("name LIKE ?", "%#{params[:search]}%").order(created_at: :desc)
        a = ( title | author )
-       @comics = ( a | tagname )
+       @comic = ( a | tagname )
+       @comics = Kaminari.paginate_array(@comic).page(params[:page]).per(10)
     end
   end
 
