@@ -1,9 +1,10 @@
 
-<div class=”form-group”>
+<div class=”search-box”>
   <%= form_tag(search_comics_path, method: :'get') do %>
-    <%= text_field_tag :search, "", placeholder: "タイトルで検索", :size=>"30" %>
+    <%= text_field_tag :search, "", placeholder: "タイトルで検索", :size=>"30", class: 'search-form' %>
     <span class="form-group-btn">
-      <%= button_tag '<i class="fa fa-search"></i>'.html_safe, type: 'submit', :name => nil %>
+      <%= button_tag '<i class="fa fa-search"></i>'.html_safe, type: 'submit', :name => nil, class: 'search-btn' %>
     </span>
   <% end %>
 </div>
+

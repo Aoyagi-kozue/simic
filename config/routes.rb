@@ -16,6 +16,7 @@ Rails.application.routes.draw do
   end
 
   post '/rate' => 'rater#create', :as => 'rate'
+  get 'tags/:tag', to: 'comics#tag_index', as: :tag
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

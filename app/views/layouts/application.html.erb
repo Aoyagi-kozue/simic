@@ -9,96 +9,93 @@
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
     <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=M+PLUS+Rounded+1c&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
   </head>
 
   <body>
     <header class="navbar fixed-top navbar-light" style="background-color: #fced6a;" >
-      <div class="container">
-        <nav class="navbar navbar-nav navbar-left">
-          <span class="Simic">Simic</span>
-        </nav>
 
-<div class="search-box">
-    <%= form_tag(comics_path,method: :get) do %>
-        <%= text_field_tag :search, "", placeholder: "タイトル / 作家名 / タグを検索", :size=>"30" %>
-        <%= button_tag '<i class="fa fa-search"></i>'.html_safe, type: 'submit', :name => nil %>
-    <% end %>
-</div>
-
-        <div class=”form-group”>
-          <%#= form_tag("/comics/result", method: :'get') do %>
-            <%#= text_field_tag :search, nil, :placeholder => "" %>
-            <span class="form-group-btn">
-              <%#= submit_tag '検索', :name => nil, class: "btn btn-sm search-btn" %>
-            </span>
-          <%# end %>
-        </div>
-
-        <nav id="slidemenu">
-            <ul class="nav nav-pills justify-content-end navbar-right">
-              <% if user_signed_in? %>
-                <li class="">
-                  <%= link_to comics_path(current_user),class: 'btn btn-light' do %>
-                    <%= fa_icon ("home") %>
-                    <span class="glyphicon glyphicon-home" aria-hidden="true"></span> Home
-                  <% end %>
-                </li>
-                <li class="">
-                  <%= link_to users_path, class: 'btn btn-light' do %>
-                    <span class="glyphicon glyphicon-user" aria-hidden="true"></span> Users
-                  <% end %>
-                </li>
-                <li class="">
-                  <%= link_to new_comic_path, class: 'btn btn-light' do %>
-                    <span class="glyphicon glyphicon-user" aria-hidden="true"></span> レビューする
-                  <% end %>
-                </li>
-                <li class="">
-                  <%= link_to destroy_user_session_path, method: :delete, class: 'btn btn-light' do %>
-                    <span class="glyphicon glyphicon-log-out" aria-hidden="true"></span> logout
-                  <% end %>
-                </li>
-                <li class="">
-                  <p> こんにちは！
-                  <%=link_to user_path(current_user) do %> <%= current_user.nickname %>
-                  <% end %> さん</p>
-                </li>
-              <% else %>
-                <li class="">
-                  <%= link_to comics_path(current_user),class: 'btn btn-light' do %>
-                  <span class="glyphicon glyphicon-home" aria-hidden="true"></span> Home
-                  <% end %>
-                </li>
-                <li class="">
-                  <%= link_to users_path, class: 'btn btn-light' do %>
-                    <span class="glyphicon glyphicon-link" aria-hidden="true"></span> About
-                  <% end %>
-                </li>
-                <li class="">
-                  <%= link_to new_user_registration_path, class: 'btn btn-light' do %>
-                    <span class="glyphicon glyphicon-edit" aria-hidden="true"></span> sign up
-                  <% end %>
-                </li>
-                <li class="">
-                  <%= link_to new_user_session_path, class: 'btn btn-light' do %>
-                    <span class="glyphicon glyphicon-log-in" aria-hidden="true"></span> login
-                  <% end %>
-                </li>
-              <% end %>
-            </ul>
-        </nav>
+      <div class="logo">
+        <%= link_to comics_path(current_user) do %>
+          <%= image_tag ("logo.png"),class: 'logo_img' %>
+        <% end %>
       </div>
+
+      <div class="search-box">
+        <%= form_tag(comics_path,method: :get) do %>
+            <%= text_field_tag :search, "", placeholder: "  タイトル / 作家名 / タグを検索", :size=>"30", class: 'search-form' %>
+            <%= button_tag '<i class="fa fa-search"></i>'.html_safe, type: 'submit', :name => nil,class: 'search-btn' %>
+        <% end %>
+      </div>
+
+      <nav id="slidemenu">
+        <ul class="nav nav-pills justify-content-end navbar-right">
+          <% if user_signed_in? %>
+            <li class="nav-btn">
+              <%= link_to comics_path(current_user),class: 'btn btn-sm btn-outline-secondary' do %>
+                <%= fa_icon ("home") %>
+                <span class="glyphicon" aria-hidden="true"></span> Home
+              <% end %>
+            </li>
+            <li class="nav-btn">
+              <%= link_to about_path, class: 'btn btn-sm  btn-outline-secondary' do %>
+                <i class="far fa-star"></i>
+                <span class="glyphicon" aria-hidden="true"></span> About
+              <% end %>
+            </li>
+            <li class="nav-btn">
+              <%= link_to new_comic_path, class: 'btn btn-sm btn-outline-secondary' do %>
+                <i class="fas fa-pen-nib"></i>
+                <span class="glyphicon review-new" aria-hidden="true">レビューする</span>
+              <% end %>
+            </li>
+            <li class="nav-btn">
+              <%= link_to destroy_user_session_path, method: :delete, class: 'btn btn-sm btn-outline-secondary' do %>
+               <i class="fas fa-sign-out-alt"></i>
+                <span class="glyphicon" aria-hidden="true"></span> logout
+              <% end %>
+            </li>
+            <li class="wel-user">
+              <p> こんにちは！
+              <%=link_to user_path(current_user),:style=>"color:#4682b4;" do %> <%= current_user.nickname %>
+              <% end %> さん</p>
+            </li>
+          <% else %>
+            <li class="nav-btn">
+              <%= link_to comics_path(current_user),class: 'btn btn-sm btn-outline-secondary' do %>
+              <%= fa_icon ("home") %>
+              <span class="glyphicon" aria-hidden="true"></span> Home
+              <% end %>
+            </li>
+            <li class="nav-btn">
+              <%= link_to about_path, class: 'btn btn-sm  btn-outline-secondary' do %>
+                <i class="far fa-star"></i>
+                <span class="glyphicon" aria-hidden="true"></span> About
+              <% end %>
+            </li>
+            <li class="nav-btn">
+              <%= link_to new_user_registration_path, class: 'btn btn-sm btn-outline-secondary' do %>
+                <i class="fas fa-user-plus"></i>
+                <span class="glyphicon" aria-hidden="true"></span> sign up
+              <% end %>
+            </li>
+            <li class="nav-btn nav-btn-last">
+              <%= link_to new_user_session_path, class: 'btn btn-sm btn-outline-secondary' do %>
+                <i class="fas fa-sign-in-alt"></i>
+                <span class="glyphicon" aria-hidden="true"></span> login
+              <% end %>
+            </li>
+          <% end %>
+        </ul>
+      </nav>
     </header>
 
     <%= yield %>
 
    <footer class="footer style-2">
-      <div class="container">
-        <div class="row">
-          <div class="col-xs-3 col-xs-offset-9">
-              <p>CopyRight Infratop.inc</p>
-          </div>
-        </div>
+      <div class="footer-content">
+        <p><small>&copy; 2019 Kozue-WCPF</small></p>
       </div>
     </footer>
 

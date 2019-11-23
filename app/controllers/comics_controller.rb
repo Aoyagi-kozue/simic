@@ -10,7 +10,6 @@ class ComicsController < ApplicationController
   def index
     if params[:search].blank?
       @comics = Comic.page(params[:page]).per(10).order(created_at: :desc)
-# binding.pry
     else
       title = Comic.where("title LIKE ?", "%#{params[:search]}%").order(created_at: :desc)
       author = Comic.where("author LIKE ?", "%#{params[:search]}%").order(created_at: :desc)
@@ -20,6 +19,20 @@ class ComicsController < ApplicationController
        @comics = Kaminari.paginate_array(@comic).page(params[:page]).per(10)
     end
   end
+
+  def tag_index
+    if params[:tag]
+      @reviews = Review.tagged_with(params[:tag])
+
+    else
+      render 'comics#index'
+    end
+    @type = params[:tag]
+    @tag_reviews = @reviews.includes(:comic).page(params[:page]).per(10).order("id DESC")
+    @tag_reviews = Kaminari.paginate_array(@tag_reviews).page(params[:page]).per(10)
+
+  end
+
 
   # GET /comics/1
   # GET /comics/1.json

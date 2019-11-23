@@ -8,41 +8,44 @@
     <% end %>
   </div>
 
-  <% @comics.each do |comic| %>
+  <% @tag_reviews.each do |tr| %>
   <div class="comic-content">
-      <%= link_to comic_path(comic) do %>
-        <% if comic.cover_img.present? %>
-          <%= image_tag comic.cover_img %>
+      <%= link_to comic_path(tr.comic_id) do %>
+        <% if tr.comic.cover_img.present? %>
+          <%= image_tag tr.comic.cover_img %>
         <% else %>
           <%= image_tag ("defaultcomic.png"), :size => '150x150' %>
         <% end %>
       <% end %>
     <div class="comic-text">
-      <div id="star-rate-<%= comic.review.id %>"></div>
+      <div id="star-rate-<%= tr.comic.review.id %>"></div>
         <script>
-        $('#star-rate-<%= comic.review.id %>').raty({
+        $('#star-rate-<%= tr.comic.review.id %>').raty({
           path: '/assets',
           readOnly: true,
-          score: <%= comic.review.star %>,
+          score: <%= tr.comic.review.star %>,
         });
         </script>
       <div class="word">
-        <p class="label label-primary"><span><%=  raw(comic.review.tag_list.map { |t| link_to t, tag_path(t) }.join(' , ')) %></span></p>
+        <p class="label label-primary"><%=  raw(tr.comic.review.tag_list.map { |t| link_to t, tag_path(t) }.join(',')) %></p>
 
-        <p>タイトル</br><span><%= comic.title %></span></p>
+        <p><%= tr.comic.title %></p>
 
-        <p>作家名</br><span><%= comic.author %></span></p>
+        <p>作家名<%= tr.comic.author %></p>
 
-      <% if comic.publisher.present? %>
-        <p>出版社</br><span><%= comic.publisher %></span></p>
+      <% if tr.comic.publisher.present? %>
+        <p>出版社</br><%= tr.comic.publisher %></p>
       <% end %>
     </div>
     </div>
   </div>
   <% end %>
 
-  <%= paginate @comics, class: "paginate" %>
+  <%#= paginate @comics, class: "paginate" %>
 
+  <br>
+
+  <%= link_to 'New Comic', new_comic_path %>
 </main>
 
 
@@ -84,15 +87,11 @@
   }
 
   .word p {
-  font-size: 12px;
+  font-size: 14px;
   padding: 5px 0;
   margin: 0;
   overflow: hidden;
   text-overflow: ellipsis;
 　white-space: nowrap;
-  }
-
-  span {
-    font-size: 14px;
   }
 </style>

@@ -17,13 +17,72 @@
 
 
 
-body {
-  padding-top: 80px;
+header {
+	height: 65px;
 }
 
-.fixed-top {
-  height:　40px;
+body {
+  background-color: #d7d9de;
+  padding: 130px 0;
+  position: relative;
+  box-sizing: border-box;
+  min-height: 100vh;
+  font-family: 'M PLUS Rounded 1c', sans-serif;
+  color: #5d5e61;
+
+  margin: 0 auto;
 }
+
+.logo_img {
+  width: 120px;
+  height: 50px;
+  margin-left: 30px;
+  margin-right: 30px;
+}
+
+.review-new {
+	font-size: 12px;
+}
+
+.nav-btn {
+	margin-top: 5px;
+	margin-left: 3px;
+}
+
+.nav-btn-last {
+	margin-right: 50px;
+}
+
+.wel-user {
+	font-size: 12px;
+	color: gray;
+	margin: 13px 30px 0 20px;
+}
+
+.search-form {
+  width: 200px;
+	border:none;
+  border-radius:50px;
+  box-shadow: none;
+  padding: 2px 8px;
+}
+
+.search-form::placeholder {
+	font-size: 12px;
+}
+
+.search-btn {
+  border-radius:10px;
+  box-shadow: none;
+  padding: 2px 8px;
+  cursor: pointer;
+}
+
+.pagination {
+  justify-content: center;
+  margin: 50px 0 0;
+}
+
 
 .pagination>li>a {
   border: none;     /*枠線をなくす*/
@@ -32,11 +91,25 @@ body {
 
 /* 表示しているページ番号のデザイン */
 .pagination>.active>a {
-  background: #93c9ff;     /*背景の色を変える*/
+  background: tomato;     /*背景の色を変える*/
   border-radius: 15px;     /*角を丸くする*/
 }
 
 /*ホバー時のデザイン*/
 .pagination>li>a:hover {
   border-radius: 15px;    /*角を丸くする*/
+}
+
+footer {
+  width: 100%;
+	padding: 15px 0;
+	text-align: center;
+	background: #bccddb;
+  position: absolute;
+  bottom: 0;
+}
+
+.footer-content p {
+	color: #fff;
+  margin: 0;
 }
