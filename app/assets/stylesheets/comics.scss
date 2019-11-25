@@ -2,6 +2,247 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-.search-form {
-  width: 500px;
-}
+
+
+
+  main {
+	  width: 70%;
+	  border-radius: 10px;
+	  background-color: white;
+	  margin: 0 auto;
+	  padding: 50px 0;
+	  position: relative;
+  }
+
+  #tag_cloud {
+    width: 650px;
+    text-align: center;
+    line-height: 1.5em;
+    margin: 0 auto 20px;
+  }
+
+  .comic-content {
+    position: relative;
+    border: 1px solid #a7aab0;
+    border-radius: 10px;
+    width: 80%;
+    display: flex;
+    margin: 10px auto;
+    padding: 30px 15px 30px 45px;
+  }
+
+  .comic-text {
+    margin-left: 35px;
+    overflow: hidden;
+     width: 410px;
+  }
+
+
+  .comic-btn {
+		border: none;
+		border-radius:10px;
+		box-shadow: none;
+	  position: absolute;
+		top: 13%;
+		left: 85%;
+		-webkit-transform : translate(-50%,-50%);
+	    transform : translate(-50%,-50%);
+	    .form-group-btn {
+	      .search-btn {
+	      background-color: #ffe0ad;
+	        font-size: 12px;
+	        padding: 5px 7px;
+	      }
+	    }
+  }
+
+  .word {
+    overflow: hidden;
+  }
+
+  .word p {
+	  font-size: 12px;
+	  padding: 10px 0;
+	  margin: 0;
+	  overflow: hidden;
+	  text-overflow: ellipsis;
+	　white-space: nowrap;
+  }
+
+  span {
+    font-size: 14px;
+  }
+
+
+  section {
+    width: 70%;
+	  border-radius: 10px;
+	  background-color: white;
+	  margin: 10px auto;
+	  padding: 20px 0 80px;
+	  position: relative;
+  }
+
+  .review-content {
+    width: 100%;
+  }
+
+  .review-head {
+	  font-size: 20px;
+	  width: 300px;
+	  text-align: center;
+	  margin: 20px auto;
+	  padding: 15px 0;
+	  border-top: 1px solid;
+	  border-bottom: 1px solid;
+  }
+
+  .review-grop {
+    width: 75%;
+    margin: 0 auto;
+    position: relative;
+  }
+
+  #stars {
+	  background-color: #fffde3;
+	  border:none;
+	  border-radius:50px;
+	  font-size: 30px;
+	  width: 200px;
+	  text-align: center;
+	  margin: 10px auto;
+	  left: 50%;
+  }
+
+  .star-rate {
+    padding: 15px;
+    margin: 15px 0 15px;
+  }
+
+  .tag-form {
+	  width: 70%;
+	  font-size: 13px;
+		border:none;
+	  border-radius:50px;
+	  box-shadow: none;
+	  margin-bottom: 20px;
+			.tag-form-style {
+			  font-size: 13px;
+			}
+	    p {
+	      font-size: 12px;
+	      margin: 0 10px 5px;
+	    }
+  }
+
+  .review-form{
+    margin-bottom: 20px;
+	    .tag-form-style{
+	      font-size: 13px;
+	    }
+  }
+
+  .review-btn {
+    .review-btn-style {
+      font-size: 18px;
+      color: #5d5e61;
+      background-color: #ffe0ad;
+	  	border: none;
+			border-radius:10px;
+			box-shadow: none;
+			padding: 10px 15px;
+			position: absolute;
+			right: 0%;
+			cursor: pointer;
+			  span {
+			    font-size: 15px;
+			    padding-left: 10px;
+			  }
+			}
+	}
+
+  .no-comic {
+  	margin-top: 30px;
+    font-size: 25px;
+    text-align: center;
+  }
+
+  .no-comic-p {
+    text-align: center;
+  }
+
+  .neko-img {
+    width: 150px;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+  }
+
+  .no-comic-btn {
+    margin-top: 30px;
+    margin-left: 343px;
+  }
+
+  .search-form-cn {
+    width: 300px;
+    height:30px;
+    font-size: 13px;
+    border: 1px solid #5d5e61;
+	  border-radius:50px;
+	  box-shadow: none;
+	  padding-left: 15px;
+	  margin-left: 240px;
+  }
+
+  .search-box-cn {
+    margin-top: 50px;
+  }
+
+  .search-btn-cn {
+	  color: #5d5e61;
+	  border-radius:10px;
+	  box-shadow: none;
+	  padding: 2px 8px;
+	  cursor: pointer;
+	}
+
+
+  .new-messege-head {
+  	width: 400px;
+    margin: 30px auto;
+    text-align: center;
+  }
+
+
+  .new-messege {
+   margin: 60px 0 40px;
+  }
+
+  .new-messege-caution {
+  	background: #fffedb;
+    padding: 0.5em;
+    border-radius: 1em;
+  	padding: 40px 0;
+  	width: 50%;
+    margin: 30px auto;
+  }
+
+  .new-messege-caution2 {
+  	font-size: 18px;
+  	text-align: center;
+  	margin-bottom: 30px;
+  }
+
+  .new-messege-p {
+  	font-size: 14px;
+  	margin-left: 65px;
+  }
+
+  .new-messege-p2 {
+  	margin-top: 30px;
+  	font-size: 14px;
+  	text-align: center;
+      span {
+      	padding-left: 20px;
+      }
+  }

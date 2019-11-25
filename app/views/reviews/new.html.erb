@@ -1,53 +1,66 @@
-<h1>New Review</h1>
+<section>
+  <div class="review-content">
+    <% if @user.id==current_user.id %>
+      <h4 class="review-head">レビューする</h4>
+      <%= form_for [@comic,@review] do |f| %>
+        <div class="review-grop">
+          <div class="star-rate">
+            <%= f.hidden_field :star, id: :comic_rating %>
+            <div id="stars"></div>
+          </div>
+          <div class="tag-form">
+            <p> ※タグをカンマ(,)区切りで入力してください </p>
+            <%= text_field_tag 'tag_list', f.object.tag_list.join(","), class: "form-control tag-form-style", placeholder: "タグをカンマ(,)区切りで入力してください" %>
+          </div>
+          <div class="review-form">
+            <%= f.text_area :review_text, rows:'5', class: "form-control tag-form-style",placeholder: "レビューをここに入力してください" %>
+          </div>
+          <div class="review-btn">
+            <%= f.button :type => "submit", class: 'review-btn-style' do %>
+              <i class="fas fa-pen-nib"></i><span>投稿</span>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+</section>
 
-<p id="notice"><%= notice %></p>
-
-<p>
-  <strong>Author:</strong>
-  <%= @comic.author%>
-</p>
-
-<p>
-  <strong>Publisher:</strong>
-  <%= @comic.publisher %>
-</p>
+<main>
+  <div class="comic-content">
+    <% if @comic.cover_img? %>
+      <%= image_tag @comic.cover_img %>
+    <% else %>
+      <%= image_tag ("defaultcomic.png"), :size => '150x150' %>
+    <% end %>
 
 
-<p>
-  <strong>Title:</strong>
-  <%= @comic.title %>
-</p>
+    <div class="comic-text">
+      <div class="word">
+        <p>タイトル</br><span><%= @comic.title %></span></p>
 
-<p>
-  <strong>Cover_img:</strong>
-  <% if @comic.cover_img? %>
-    <%= image_tag @comic.cover_img %>
-  <% else %>
-    <%= image_tag ("defaultcomic.png"), :size => '150x150' %>
-  <% end %>
-</p>
+        <% if @comic.author.present? %>
+          <p>作家名</br><span><%= @comic.author %></span></p>
+        <% end %>
 
-<% if @user.id==current_user.id %>
-  <%= form_for [@comic,@review] do |f| %>
-    <div class="row">
-      <div class="col-sm-12">
-        <div class="field form-group form-group-lg">
-          <%= f.hidden_field :star, id: :comic_rating %>
-          <div id="stars"></div>
-          <p> タグをカンマ(,)区切りで入力してください </p>
-          <%= text_field_tag 'tag_list', f.object.tag_list.join(","), class: "form-control",placeholder: "タグをカンマ(,)区切りで入力してください" %>
-          <%= f.text_area :review_text, rows:'5', class: "form-control",placeholder: "レビューをここに" %>
+        <% if @comic.publisher.present? %>
+          <p>出版社</br><span><%= @comic.publisher %></span></p>
+        <% end %>
       </div>
     </div>
-    <%= f.submit "送信する", class: "btn btn-lg btn-base-1 mt-20 pull-right" %>
-  <% end %>
-<% end %>
+  </div>
+</main>
 
-<%= link_to 'Back', comics_path %>
+
+
+
+
 
 <script type="text/javascript">
+
   $("#stars").raty({
     path: '/assets',
     scoreName: 'review[star]',
   });
+
 </script>

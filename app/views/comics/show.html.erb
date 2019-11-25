@@ -1,60 +1,66 @@
-
-<p>
-  <strong>Author:</strong>
-  <%= @comic.author%>
-</p>
-
-<p>
-  <strong>Publisher:</strong>
-  <%= @comic.publisher %>
-</p>
+<main>
+  <div class="comic-content">
+    <% if @comic.cover_img? %>
+      <%= image_tag @comic.cover_img %>
+    <% else %>
+      <%= image_tag ("defaultcomic.png"), :size => '150x150' %>
+    <% end %>
 
 
-<p>
-  <strong>Title:</strong>
-  <%= @comic.title %>
-</p>
+    <div class="comic-text">
+      <div class="word">
+        <p>タイトル</br><span><%= @comic.title %></span></p>
 
-<p>
-  <strong>Cover_img:</strong>
-  <% if @comic.cover_img? %>
-    <%= image_tag @comic.cover_img %>
-  <% else %>
-    <%= image_tag ("defaultcomic.png"), :size => '150x150' %>
-  <% end %>
-</p>
+        <% if @comic.author.present? %>
+          <p>作家名</br><span><%= @comic.author %></span></p>
+        <% end %>
 
- <div id="star-rate-<%= @comic.review.id %>"></div>
-  <script>
-  $('#star-rate-<%= @comic.review.id %>').raty({
-    path: '/assets',
-    readOnly: true,
-    score: <%= @comic.review.star %>,
-  });
-  </script>
-
-<div class="review-text">
-  <div class="review-author clearfix">
-    <%= link_to @comic.review.user.nickname, user_path(@user.id) %>
-    <span class="review-meta">
-      <span class="review-date"><%= @comic.review.created_at.strftime('%Y/%m/%d') %></span>
-    </span>
+        <% if @comic.publisher.present? %>
+          <p>出版社</br><span><%= @comic.publisher %></span></p>
+        <% end %>
+      </div>
+    </div>
   </div>
-  <div class="tag-content">
-      <span class="label label-primary"><%= @comic.review.tag_list %></span>
-  </div>
-  <div class="review-entry">
-    <%= @comic.review.review_text %>
-  </div>
-</div>
+</main>
 
-<% if @user.id==current_user.id %>
-  <button type="button" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#myModal">
-    投稿削除
-  </button>
+<% if @comic.review.present? %>
+<section>
+  <div class="review-content">
+    <div class="review-grop">
+      <div class="review-user">
+        <%= link_to @comic.review.user.nickname, user_path(@user.id) %>
+        <span class="review-meta">
+          <span class="review-date"><%= @comic.review.created_at.strftime('%Y/%m/%d') %></span>
+        </span>
+      </div>
+      <div class="review-text">
+       <div id="star-rate-<%= @comic.review.id %>"></div>
+        <script>
+        $('#star-rate-<%= @comic.review.id %>').raty({
+          path: '/assets',
+          readOnly: true,
+          score: <%= @comic.review.star %>,
+        });
+        </script>
+
+        <div class="tag-content">
+            <p class="label label-primary"><span><%=  raw(@comic.review.tag_list.map { |t| link_to t, tag_path(t) }.join(' , ')) %></span></p>
+        </div>
+        <div class="review-entry">
+          <%= @comic.review.review_text %>
+        </div>
+      </div>
+    </div>
+
+    <% if @user.id==current_user.id %>
+      <button type="button" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#myModal">
+        投稿削除
+      </button>
+    <% end %>
+    <%= link_to '一覧へ', comics_path, class: "btn btn-sm btn-outline-primary" %>
+  </div>
+</section>
 <% end %>
-<%= link_to '一覧へ', comics_path, class: "btn btn-sm btn-outline-primary" %>
-
 
 <!-- モーダルの設定 -->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">

@@ -12,9 +12,9 @@
  *
  */
 
+
  @import "bootstrap";
  @import "font-awesome";
-
 
 
 header {
@@ -23,7 +23,7 @@ header {
 
 body {
   background-color: #d7d9de;
-  padding: 130px 0;
+  padding: 150px 0;
   position: relative;
   box-sizing: border-box;
   min-height: 100vh;
@@ -72,11 +72,13 @@ body {
 }
 
 .search-btn {
+  color: #5d5e61;
   border-radius:10px;
   box-shadow: none;
   padding: 2px 8px;
   cursor: pointer;
 }
+
 
 .pagination {
   justify-content: center;

@@ -1,39 +1,33 @@
-<h1>New Comic</h1>
-<table class="table">
-	<thead>
-		<tr>
-			<th>タイトル</th>
-			<th>登録</th>
-		</tr>
-	</thead>
-<div class="w3-row-padding w3-padding-16 w3-center">
 
-	<tbody>
+<main>
+	<% if @comics.present? %>
 		<% @comics.each do |comic| %>
-			<tr>
-				<td>
-					<% if comic["volumeInfo"]["imageLinks"].present? %>
-					  <%= image_tag comic["volumeInfo"]["imageLinks"]["smallThumbnail"] %>
-					<% else %>
-					  <%= image_tag ("defaultcomic.png"), :size => '150x150' %>
-					<% end %>
-					<br>
-<%# binding pry %>
-					<p> タイトル
-					<% if comic["volumeInfo"]["title"].present? %>
-					  <%= comic["volumeInfo"]["title"] %>
-					<% end %> </p>
-					<p> 作者名
-					<% if comic["volumeInfo"]["authors"].present? %>
-					  <%= comic["volumeInfo"]["authors"].join(", ")%>
-					<% end %>　</p>
-					<p> 出版社
-					<% if comic["volumeInfo"]["publisher"].present? %>
-					  <%= comic["volumeInfo"]["publisher"] %>
-					<% end %> </p>
-				</td>
+			<div class="comic-content">
+				<% if comic["volumeInfo"]["imageLinks"].present? %>
+				  <%= image_tag comic["volumeInfo"]["imageLinks"]["smallThumbnail"] %>
+				<% else %>
+				  <%= image_tag ("defaultcomic.png"), :size => '150x150' %>
+				<% end %>
 
-				<td>
+				<div class="comic-text">
+					<div class="word">
+					</br>
+						<p> タイトル</br>
+						<% if comic["volumeInfo"]["title"].present? %>
+						  <span><%= comic["volumeInfo"]["title"] %></span>
+						<% end %> </p>
+						<p> 作者名</br>
+						<% if comic["volumeInfo"]["authors"].present? %>
+						  <span><%= comic["volumeInfo"]["authors"].join(", ")%></span>
+						<% end %>　</p>
+						<p> 出版社</br>
+						<% if comic["volumeInfo"]["publisher"].present? %>
+						  <span><%= comic["volumeInfo"]["publisher"] %></span>
+						<% end %> </p>
+					</div>
+				</div>
+
+				<div class="comic-btn">
 					<%= form_for @comic do |f| %>
 					  <% if comic["volumeInfo"]["imageLinks"].present? %>
 					    <%= f.hidden_field :cover_img, :value => "#{comic["volumeInfo"]["imageLinks"]["smallThumbnail"]}" %>
@@ -47,18 +41,20 @@
 						<% if comic["volumeInfo"]["publisher"].present? %>
 						  <%= f.hidden_field :publisher, :value =>  "#{comic["volumeInfo"]["publisher"]}" %>
 						<% end %>
-						<span class="form-group-btn">
-							<%= f.submit '登録', :name => nil, class: "btn btn-default search-btn" %>
-						</span>
+						<div class="form-group-btn">
+							<%= f.submit 'この作品をレビュー', :name => nil, class: "btn btn-default search-btn" %>
+						</div>
 					<% end %>
-				</td>
-			</tr>
+	      </div>
+			</div>
 		<% end %>
-	</tbody>
-</table>
-	<div>
 
-	</div>
-</div>
+	<% else %>
+    <h1 class="no-comic">該当する作品が見つかりませんでした。</h1>
+    <p class="no-comic-p">キーワードを変えて、再検索してください。</p>
+    <%= image_tag ("neko.png"), class: "neko-img" %>
+    <%= link_to '再検索してみる', new_comic_path, class: "btn btn-sm btn-outline-primary no-comic-btn" %>
+	<% end %>
 
-<%= link_to 'Back', comics_path %>
+</main>
+

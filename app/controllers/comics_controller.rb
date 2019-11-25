@@ -4,6 +4,7 @@ class ComicsController < ApplicationController
 
   require 'net/http'
   require 'uri'
+  require 'cgi'
 
   # GET /comics
   # GET /comics.json
@@ -48,6 +49,7 @@ class ComicsController < ApplicationController
       keyword = params[:search]
       # @results = request("https://www.googleapis.com/books/v1/volumes?q="+keyword)
       # uri = "https://www.googleapis.com/books/v1/volumes?q=isbn:4839962227"
+      keyword = CGI.escape(keyword)
       uri = "https://www.googleapis.com/books/v1/volumes?q=intitle:"+keyword+"&country=JP&langRestrict=ja&orderBy=newest"
       params = {
        format: "json",
@@ -57,14 +59,13 @@ class ComicsController < ApplicationController
 
       client = HTTPClient.new
       request =  client.get(uri,params)
-      response = JSON.parse(request.body)
-      @comics = response["items"]
-
-      # @titles = []
-      # @results.each do |item|
-      #   @titles.push item.title
-      # end
-      @comic = Comic.new
+        response = JSON.parse(request.body)
+        unless ["totalItems"] == 0
+          @comics = response["items"]
+          @comic = Comic.new
+        else
+          render '/comics/new'
+        end
     end
   end
 

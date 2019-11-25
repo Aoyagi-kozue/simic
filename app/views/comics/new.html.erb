@@ -1,10 +1,20 @@
 
-<div class=”search-box”>
-  <%= form_tag(search_comics_path, method: :'get') do %>
-    <%= text_field_tag :search, "", placeholder: "タイトルで検索", :size=>"30", class: 'search-form' %>
-    <span class="form-group-btn">
-      <%= button_tag '<i class="fa fa-search"></i>'.html_safe, type: 'submit', :name => nil, class: 'search-btn' %>
-    </span>
-  <% end %>
-</div>
+<main>
+	<h5 class="new-messege-head">レビューしたい作品を検索してください</h5>
+	<div class=”search-box-cn”>
+	  <%= form_tag(search_comics_path, method: :'get', class: 'search-box-cn') do %>
+	    <%= text_field_tag :search, "", placeholder: "タイトルで検索", class: 'search-form-cn' %>
+	      <%= button_tag '<i class="fa fa-search"></i>'.html_safe, type: 'submit', :name => nil, class: 'search-btn-cn' %>
+	  <% end %>
+	</div>
 
+  <div class="new-messege">
+  	<div class="new-messege-caution">
+		<p class="new-messege-caution2">注意事項</p>
+		<p class="new-messege-p">・タイトル名で検索してください</p>
+		<p class="new-messege-p">・ふりがなでの検索は対応しておりません。</p>
+		<p class="new-messege-p2">(例) 「鬼滅の刃」を検索したい！</br>
+		○ 「鬼滅　刃」<span>× 「きめつ　やいば」</span></p>
+		</div>
+	</div>
+</main>
