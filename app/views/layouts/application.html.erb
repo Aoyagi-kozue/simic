@@ -62,7 +62,7 @@
             </li>
             <li class="wel-user">
               <p> こんにちは！
-              <%=link_to user_path(current_user),:style=>"color:#4682b4;" do %> <%= current_user.nickname %>
+              <%=link_to user_path(current_user),:style=>"color:#4682b4;" do %> <%= current_user.nickname.truncate(12) %>
               <% end %> さん</p>
             </li>
           <% else %>

@@ -1,98 +1,61 @@
 
 <main>
   <div id="tag_cloud">
-    <% tag_cloud Review.tag_counts.limit(5), %w{s m l} do |tag, css_class| %>
+    <% tag_cloud Review.tag_counts.order("id DESC").limit(10), %w{s m l} do |tag, css_class| %>
       <%= link_to tag.name, tag_path(tag.name), class: css_class %>
     <% end %>
   </div>
 
   <% @tag_reviews.each do |tr| %>
-  <div class="comic-content">
-    <%= link_to comic_path(tr.comic_id) do %>
-      <% if tr.comic.cover_img.present? %>
-        <%= image_tag tr.comic.cover_img %>
-      <% else %>
-        <%= image_tag ("defaultcomic.png"), :size => '150x150' %>
-      <% end %>
-    <% end %>
-    <div class="comic-text">
-      <% if tr.comic.review.present? %>
-        <div id="star-rate-<%= tr.comic.review.id %>"></div>
-          <script>
-          $('#star-rate-<%= tr.comic.review.id %>').raty({
-            path: '/assets',
-            readOnly: true,
-            score: <%= tr.comic.review.star %>,
-          });
-          </script>
-      <% end %>
-      <div class="word">
-        <% if tr.comic.review.present? %>
-          <p class="label label-primary"><span><%=  raw(tr.comic.review.tag_list.map { |t| link_to t, tag_path(t) }.join(',')) %></span></p>
-        <% end %>
+    <div class="comic-content">
+      <div class="review-user">
+        <%= image_tag tr.comic.user.prof_image.thumb.url, size:'35x35', class: "prof-image" %>
+        <div class="prof-name">
+          <%= link_to tr.comic.user.nickname, user_path(tr.comic.user_id), class: "prof-name2" %>
+        </div>
+      </div>
+      <div class="comic-show">
+        <div class="cover-img">
+          <%= link_to comic_path(tr.comic_id) do %>
+            <% if tr.comic.cover_img.present? %>
+              <%= image_tag tr.comic.cover_img %>
+            <% else %>
+              <%= image_tag ("defaultcomic.png"), :size => '150x150' %>
+            <% end %>
+          <% end %>
+        </div>
+        <div class="comic-text">
+          <% if tr.comic.review.present? %>
+            <div id="star-rate-<%= tr.comic.review.id %>"></div>
+              <script>
+              $('#star-rate-<%= tr.comic.review.id %>').raty({
+                path: '/assets',
+                readOnly: true,
+                score: <%= tr.comic.review.star %>,
+              });
+              </script>
+          <% end %>
+          <div class="word">
+            <% if tr.comic.review.present? %>
+              <p class="label label-primary"><span><%=  raw(tr.comic.review.tag_list.map { |t| link_to t, tag_path(t) }.join(' , ')) %></span></p>
+            <% end %>
 
-        <p>タイトル</br><span><%= tr.comic.title %></span></p>
+            <p>タイトル</br><span><%= tr.comic.title %></span></p>
 
-        <% if tr.comic.author.present? %>
-          <p>作家名<%= tr.comic.author %></p>
-        <% end %>
+            <% if tr.comic.author.present? %>
+              <p>作家名</br><span><%= tr.comic.author %></span></p>
+            <% end %>
 
-        <% if tr.comic.publisher.present? %>
-          <p>出版社</br><span><%= tr.comic.publisher %></span></p>
-        <% end %>
+            <% if tr.comic.publisher.present? %>
+              <p>出版社</br><span><%= tr.comic.publisher %></span></p>
+            <% end %>
+          </div>
+        </div>
       </div>
     </div>
-  </div>
   <% end %>
 
   <%= paginate @tag_reviews, class: "paginate" %>
 
 </main>
 
-
-<style>
-
-  main {
-  width: 70%;
-  border-radius: 10px;
-  background-color: white;
-  margin: 0 auto;
-  padding: 50px 0;
-  }
-
-  #tag_cloud {
-    width: 100%;
-    text-align: center;
-    line-height: 1.6em;
-    .s { font-size: 0.8em; }
-    .m { font-size: 1.2em; }
-    .l { font-size: 1.8em; }
-  }
-
-  .comic-content {
-    border: 1px solid #a7aab0;
-    border-radius: 10px;
-    width: 80%;
-    display: flex;
-    margin: 10px auto;
-    padding: 30px 15px 30px 45px;
-  }
-
-  .comic-text {
-    margin-left: 30px;
-    overflow: hidden;
-  }
-
-  .word {
-    overflow: hidden;
-  }
-
-  .word p {
-  font-size: 14px;
-  padding: 5px 0;
-  margin: 0;
-  overflow: hidden;
-  text-overflow: ellipsis;
-　white-space: nowrap;
-  }
-</style>

@@ -1,8 +1,11 @@
 class UsersController < ApplicationController
 
-  before_action :authenticate_user!, except: [:about]
+  before_action :authenticate_user!, except: [:about, :withdraw]
   before_action :check_user, only: [:update, :edit, :destroy]
 
+
+  def index
+  end
 
   def about
   end

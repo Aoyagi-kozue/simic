@@ -1,45 +1,81 @@
+
 <div class="profile-content">
-  <div class="prof-image">
-  	<%= image_tag @user.prof_image.thumb.url, size:'50x50' %>
-  </div>
-  <div class="name">
-    <%= @user.nickname %>
-  </div>
-  <div class="messege">
-  	<p>メッセージ</p>
-    <%= @user.message %>
+  <div class="prof-show">
+    <div class="prof-imgname">
+      <div class="prof-img">
+      	<%= image_tag @user.prof_image.thumb.url, size:'150x150', class: "prof-image" %>
+      </div>
+      <div class="name">
+        <%= @user.nickname %>
+      </div>
+    </div>
+    <div class="messege">
+      <%= @user.message %>
+    </div>
+
+    <% if @user.id==current_user.id %>
+    <%= link_to "編集",edit_user_path(@user), class: "btn btn-success edit-btn" %>
+    <button type="button" class="btn btn-link withdraw-btn" data-toggle="modal" data-target="#myModal" style="font-size: 12px;">
+      退会希望
+    </button>
+    <% end %>
   </div>
 </div>
 
-  <% if @user.id==current_user.id %>
-  <%= link_to "編集",edit_user_path(@user), class: "btn btn-success" %>
-  <button type="button" class="btn btn-link" data-toggle="modal" data-target="#myModal" style="font-size: 12px;">
-    退会希望
-  </button>
-  <% end %>
+<main>
+  <% if @comics.present? %>
+    <% @comics.each do |comic| %>
+      <div class="comic-content">
+        <div class="review-user">
+            <%= image_tag comic.user.prof_image.thumb.url, size:'35x35', class: "prof-image" %>
+          <div class="prof-name">
+            <%= link_to comic.user.nickname, user_path(comic.user_id), class: "prof-name2" %>
+          </div>
+        </div>
+        <div class="comic-show">
+          <div class="cover-img">
+            <%= link_to comic_path(comic) do %>
+              <% if comic.cover_img.present? %>
+                <%= image_tag comic.cover_img %>
+              <% else %>
+                <%= image_tag ("defaultcomic.png"), :size => '150x150' %>
+              <% end %>
+            <% end %>
+          </div>
+          <div class="comic-text">
+            <% if comic.review.present? %>
+              <div id="star-rate-<%= comic.review.id %>"></div>
+                <script type="text/javascript">
+                $('#star-rate-<%= comic.review.id %>').raty({
+                  path: '/assets',
+                  readOnly: true,
+                  score: <%= comic.review.star %>,
+                });
+                </script>
+            <% end %>
+            <div class="word">
+              <% if comic.review.present? %>
+                <p class="label label-primary"><span><%=  raw(comic.review.tag_list.map { |t| link_to t, tag_path(t) }.join(' , ')) %></span></p>
+              <% end %>
 
-  <% @comics.each do |comic| %>
-    <%= link_to comic_path(comic) do %>
-      <% if comic.cover_img.present? %>
-        <%= image_tag comic.cover_img %>
-      <% else %>
-        <%= image_tag ("defaultcomic.png"), :size => '150x150' %>
-      <% end %>
+              <p>タイトル</br><span><%= comic.title %></span></p>
+
+              <% if comic.author.present? %>
+                <p>作家名</br><span><%= comic.author %></span></p>
+              <% end %>
+
+              <% if comic.publisher.present? %>
+                <p>出版社</br><span><%= comic.publisher %></span></p>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
     <% end %>
-    <div id="star-rate-<%= comic.review.id %>"></div>
-      <script>
-      $('#star-rate-<%= comic.review.id %>').raty({
-        path: '/assets',
-        readOnly: true,
-        score: <%= comic.review.star %>,
-      });
-      </script>
-    <p><%= comic.title %></p>
-    <p><%= comic.author %></p>
-    <p><%= comic.publisher %></p>
-    <p class="label label-primary"><%= comic.review.tag_list %></p>
-
+  <% else %>
+    <p class="no-comic-p">レビューした作品はございません</p>
   <% end %>
+</main>
 
 
 <!-- モーダルの設定 -->
@@ -53,11 +89,11 @@
         </button>
       </div>
       <div class="modal-body">
-        <p>退会後は、以下の機能がご利用になれません。</p></br>
+        <p>退会後は、以下の機能がご利用になれません</p></br>
           <ul>
-            <li>Simic へログインすることができなくなります。</li>
-            <li>Simic のすべての機能を利用することができなくなります。</li>
-            <li>すべてのユーザーが、あなたのプロフィールページを閲覧することができなくなります。</li>
+            <li>Simic へログインすることができなくなります</li>
+            <li>Simic のすべての機能を利用することができなくなります</li>
+            <li>すべてのユーザーが、あなたのプロフィールページを閲覧することができなくなります</li>
           </ul>
       </div>
       <div class="modal-footer">

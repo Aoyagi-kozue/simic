@@ -1,4 +1,6 @@
-<h4> 退会が完了しました　</h4>
-<p>ご利用いただきありがとうございました。</p>
-
-<%= link_to 'トップへ', comics_path %>
+<main>
+	<h4 class="no-comic"> 退会が完了しました　</h4>
+	<p class="no-comic-p">ご利用いただきましてありがとうございました</p>
+	  <%= image_tag ("neko.png"), class: "neko-img" %>
+	  <%= link_to 'トップへ戻る', comics_path, class: "btn btn-sm btn-outline-primary no-comic-btn" %>
+</main>

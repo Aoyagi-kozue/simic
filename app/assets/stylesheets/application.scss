@@ -60,7 +60,10 @@ body {
 }
 
 .search-form {
+	color: #5d5e61;
+	font-size: 12px;
   width: 200px;
+  height: 30px;
 	border:none;
   border-radius:50px;
   box-shadow: none;
@@ -79,27 +82,53 @@ body {
   cursor: pointer;
 }
 
+.alert {
+		border-radius: 0px;
+}
+
+.error_msg {
+	margin: 0;
+}
+
+.sign-upin {
+  text-align: center;
+	margin: 20px auto;
+	h2 {
+    margin-bottom: 30px;
+	}
+	.sign-upin-form {
+		margin-bottom: 20px;
+		border-radius: 10px;
+		border: 1px solid #5d5e61;
+		box-shadow: none;
+	}
+}
+
+.sign-upin-btn {
+  color: #5d5e61;
+  background-color: #ffe0ad;
+  font-size: 16px;
+  padding: 5px 10px;
+  margin: 20px 0;
+}
 
 .pagination {
   justify-content: center;
   margin: 50px 0 0;
 }
 
-
 .pagination>li>a {
-  border: none;     /*枠線をなくす*/
-  color: #696969;   /*文字の色を変える*/
+  border: none;
+  color: #696969;
 }
 
-/* 表示しているページ番号のデザイン */
 .pagination>.active>a {
-  background: tomato;     /*背景の色を変える*/
-  border-radius: 15px;     /*角を丸くする*/
+  background: tomato;
+  border-radius: 15px;
 }
 
-/*ホバー時のデザイン*/
 .pagination>li>a:hover {
-  border-radius: 15px;    /*角を丸くする*/
+  border-radius: 15px;
 }
 
 footer {

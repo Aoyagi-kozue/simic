@@ -1,40 +1,46 @@
 <main>
   <div class="comic-content">
-    <% if @comic.cover_img? %>
-      <%= image_tag @comic.cover_img %>
-    <% else %>
-      <%= image_tag ("defaultcomic.png"), :size => '150x150' %>
-    <% end %>
-
-
-    <div class="comic-text">
-      <div class="word">
-        <p>タイトル</br><span><%= @comic.title %></span></p>
-
-        <% if @comic.author.present? %>
-          <p>作家名</br><span><%= @comic.author %></span></p>
+    <div class="comic-show3">
+      <div class="cover-img">
+        <% if @comic.cover_img? %>
+          <%= image_tag @comic.cover_img %>
+        <% else %>
+          <%= image_tag ("defaultcomic.png"), :size => '150x150' %>
         <% end %>
+      </div>
+      <div class="comic-text">
+        <div class="word">
+          <p>タイトル</br><span><%= @comic.title %></span></p>
 
-        <% if @comic.publisher.present? %>
-          <p>出版社</br><span><%= @comic.publisher %></span></p>
-        <% end %>
+          <% if @comic.author.present? %>
+            <p>作家名</br><span><%= @comic.author %></span></p>
+          <% end %>
+
+          <% if @comic.publisher.present? %>
+            <p>出版社</br><span><%= @comic.publisher %></span></p>
+          <% end %>
+        </div>
       </div>
     </div>
   </div>
 </main>
 
-<% if @comic.review.present? %>
-<section>
-  <div class="review-content">
-    <div class="review-grop">
-      <div class="review-user">
-        <%= link_to @comic.review.user.nickname, user_path(@user.id) %>
-        <span class="review-meta">
-          <span class="review-date"><%= @comic.review.created_at.strftime('%Y/%m/%d') %></span>
-        </span>
-      </div>
-      <div class="review-text">
-       <div id="star-rate-<%= @comic.review.id %>"></div>
+
+
+<div class="review-content2">
+  <div class="review-user2">
+    <%= image_tag @comic.user.prof_image.thumb.url, size:'35x35', class: "prof-image" %>
+    <div class="prof-name">
+      <%= link_to @comic.review.user.nickname, user_path(@user.id), class: "prof-name2" %>
+      <span class="review-meta">
+        <span class="review-date"><%= @comic.review.created_at.strftime('%Y/%m/%d') %></span>
+      </span>
+    </div>
+  </div>
+
+  <div class="review-text">
+    <% if @comic.review.star.present? %>
+      <div id="star-rate-<%= @comic.review.id %>"></div>
         <script>
         $('#star-rate-<%= @comic.review.id %>').raty({
           path: '/assets',
@@ -42,25 +48,30 @@
           score: <%= @comic.review.star %>,
         });
         </script>
-
-        <div class="tag-content">
-            <p class="label label-primary"><span><%=  raw(@comic.review.tag_list.map { |t| link_to t, tag_path(t) }.join(' , ')) %></span></p>
-        </div>
-        <div class="review-entry">
-          <%= @comic.review.review_text %>
-        </div>
+    <% end %>
+    <% if @comic.review.tag_list.present? %>
+      <div class="tag-content">
+        <p class="label label-primary"><span><%=  raw(@comic.review.tag_list.map { |t| link_to t, tag_path(t) }.join(' , ')) %></span></p>
       </div>
-    </div>
+    <% end %>
+    <% if @comic.review.tag_list.present? %>
+      <div class="review-entry">
+        <%= @comic.review.review_text %>
+      </div>
+    <% end %>
+  </div>
 
-    <% if @user.id==current_user.id %>
-      <button type="button" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#myModal">
+  <div class="">
+    <% if @comic.user_id==current_user.id %>
+      <button type="button" class="btn btn-sm btn-danger ds-btn" data-toggle="modal" data-target="#myModal">
         投稿削除
       </button>
     <% end %>
-    <%= link_to '一覧へ', comics_path, class: "btn btn-sm btn-outline-primary" %>
+
+    <%= link_to 'トップへ戻る', comics_path, class: "btn btn-sm btn-outline-primary showback-btn" %>
   </div>
-</section>
-<% end %>
+</div>
+
 
 <!-- モーダルの設定 -->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">

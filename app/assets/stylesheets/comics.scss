@@ -14,11 +14,109 @@
 	  position: relative;
   }
 
+  .profile-content {
+    width: 70%;
+	  border-radius: 10px;
+	  background-color: white;
+	  margin: 10px auto;
+	  padding: 30px 0;
+  }
+
+  .prof-show {
+  	width: 50%;
+  	margin: 20px auto;
+  }
+
+  .prof-imgname {
+    margin: 20px auto;
+    text-align: center;
+  }
+
+  .prof-img {
+  	margin-bottom: 15px;
+  	text-align: center;
+  }
+
+  .prof-img2 { /*users/edit*/
+  	width: 50%;
+    margin: 20px auto;
+    text-align: center;
+  }
+
+  .name,.messege {
+    margin-bottom: 30px;
+  	  p{
+  	    margin-bottom: 5px;
+	  	  span{
+	  	    margin-left: 50px;
+	      }
+	    }
+	    .tag-form-style {
+			  font-size: 14px;
+			}
+  }
+
+  .edit-btn {
+  	margin-top: 0px;
+    margin-left: 172px;
+  }
+  .withdraw-btn {
+  	margin-top: 20px;
+    margin-left: 163px;
+  }
+
+  .prof-edit {
+  	width: 80%;
+  	margin: 20px auto;
+  }
+
+  .prof-up {
+  	margin: 20px 0;
+  	font-size: 14px;
+  }
+
+  .update-btn {
+  	color: #5d5e61;
+    background-color: #ffe0ad;
+    font-size: 16px;
+    padding: 5px 10px;
+    position: absolute;
+		bottom: 8%;
+		left: 70%;
+  }
+
   #tag_cloud {
     width: 650px;
     text-align: center;
     line-height: 1.5em;
     margin: 0 auto 20px;
+    .s { font-size: 0.5em; }
+	  .m { font-size: 0.8em; }
+	  .l { font-size: 1.0em; }
+  }
+
+
+  .review-user {
+  	border-bottom: 3px double #a7aab0;
+	  position: absolute;
+    display: flex;
+    right: 3%;
+  }
+
+  .prof-image {
+  	border: 1px solid #a7aab0;
+  	border-radius: 50%;
+  }
+
+  .prof-name {
+  	height: 35px;
+  }
+
+  .prof-name2 {
+  	font-size: 13px;
+  	color: #4682b4;
+  	margin: 0 15px;
+  	line-height: 35px;
   }
 
   .comic-content {
@@ -26,15 +124,29 @@
     border: 1px solid #a7aab0;
     border-radius: 10px;
     width: 80%;
-    display: flex;
     margin: 10px auto;
-    padding: 30px 15px 30px 45px;
+    padding: 25px 15px 20px 45px;
+  }
+
+  .comic-show {
+    display: flex;
+    margin-top: 70px;
+  }
+
+  .comic-show2 {  /*comics/search*/
+    display: flex;
+    margin-top: 40px;
+  }
+
+  .comic-show3 {  /*comics/show*/
+    display: flex;
+    margin: 20px 0;
   }
 
   .comic-text {
     margin-left: 35px;
     overflow: hidden;
-     width: 410px;
+    width: 410px;
   }
 
 
@@ -87,6 +199,28 @@
     width: 100%;
   }
 
+  .review-grop {
+    width: 75%;
+    margin: 0 auto;
+    position: relative;
+  }
+
+  .review-content2 { /*comics/show*/
+    width: 70%;
+	  border-radius: 10px;
+	  background-color: white;
+	  margin: 10px auto;
+	  padding: 30px 0;
+	  position: relative;
+  }
+
+  .review-user2 {  /*comics/show*/
+  	border-bottom: 3px double #a7aab0;
+	  position: absolute;
+    display: flex;
+    left: 5%;
+  }
+
   .review-head {
 	  font-size: 20px;
 	  width: 300px;
@@ -97,16 +231,28 @@
 	  border-bottom: 1px solid;
   }
 
-  .review-grop {
-    width: 75%;
-    margin: 0 auto;
-    position: relative;
+
+  .review-text {
+  	width: 85%;
+	  border-radius: 10px;
+  	margin: 70px auto 20px;
+  	padding: 15px 20px;
+  	border: 1px solid #5d5e61;
+  }
+
+  .ds-btn {
+  	margin-top: 0px;
+    margin-left: 355px;
+  }
+  .showback-btn {
+  	margin-top: 20px;
+    margin-left: 343px;
   }
 
   #stars {
 	  background-color: #fffde3;
 	  border:none;
-	  border-radius:50px;
+	  border-radius: 50px;
 	  font-size: 30px;
 	  width: 200px;
 	  text-align: center;

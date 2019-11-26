@@ -28,24 +28,27 @@
 
 <main>
   <div class="comic-content">
-    <% if @comic.cover_img? %>
-      <%= image_tag @comic.cover_img %>
-    <% else %>
-      <%= image_tag ("defaultcomic.png"), :size => '150x150' %>
-    <% end %>
-
-
-    <div class="comic-text">
-      <div class="word">
-        <p>タイトル</br><span><%= @comic.title %></span></p>
-
-        <% if @comic.author.present? %>
-          <p>作家名</br><span><%= @comic.author %></span></p>
+    <div class="comic-show3">
+      <div class="cover-img">
+        <% if @comic.cover_img? %>
+          <%= image_tag @comic.cover_img %>
+        <% else %>
+          <%= image_tag ("defaultcomic.png"), :size => '150x150' %>
         <% end %>
+      </div>
 
-        <% if @comic.publisher.present? %>
-          <p>出版社</br><span><%= @comic.publisher %></span></p>
-        <% end %>
+      <div class="comic-text">
+        <div class="word">
+          <p>タイトル</br><span><%= @comic.title %></span></p>
+
+          <% if @comic.author.present? %>
+            <p>作家名</br><span><%= @comic.author %></span></p>
+          <% end %>
+
+          <% if @comic.publisher.present? %>
+            <p>出版社</br><span><%= @comic.publisher %></span></p>
+          <% end %>
+        </div>
       </div>
     </div>
   </div>
