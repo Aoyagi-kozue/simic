@@ -82,3 +82,7 @@ gem 'devise-i18n-views'
 gem 'enum_help'
 gem 'font-awesome-rails'
 gem 'ratyrate'
+
+group :production do
+  gem 'mysql2'
+end
