@@ -61,14 +61,20 @@
     <% end %>
   </div>
 
-  <div class="">
-    <% if @comic.user_id==current_user.id %>
-      <button type="button" class="btn btn-sm btn-danger ds-btn" data-toggle="modal" data-target="#myModal">
+  <% if @comic.user_id==current_user.id %>
+    <div class="btn-group">
+      <div class="ds-btn">
+        <button type="button" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#myModal">
         投稿削除
-      </button>
-    <% end %>
+        </button>
+      </div>
+    </div>
+  <% end %>
 
-    <%= link_to 'トップへ戻る', comics_path, class: "btn btn-sm btn-outline-primary showback-btn" %>
+  <div class="btn-group">
+    <div class="showback-btn">
+      <%= link_to 'トップへ戻る', comics_path, class: "btn btn-sm btn-outline-primary" %>
+    </div>
   </div>
 </div>
 

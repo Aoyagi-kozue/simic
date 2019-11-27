@@ -14,76 +14,6 @@
 	  position: relative;
   }
 
-  .profile-content {
-    width: 70%;
-	  border-radius: 10px;
-	  background-color: white;
-	  margin: 10px auto;
-	  padding: 30px 0;
-  }
-
-  .prof-show {
-  	width: 50%;
-  	margin: 20px auto;
-  }
-
-  .prof-imgname {
-    margin: 20px auto;
-    text-align: center;
-  }
-
-  .prof-img {
-  	margin-bottom: 15px;
-  	text-align: center;
-  }
-
-  .prof-img2 { /*users/edit*/
-  	width: 50%;
-    margin: 20px auto;
-    text-align: center;
-  }
-
-  .name,.messege {
-    margin-bottom: 30px;
-  	  p{
-  	    margin-bottom: 5px;
-	  	  span{
-	  	    margin-left: 50px;
-	      }
-	    }
-	    .tag-form-style {
-			  font-size: 14px;
-			}
-  }
-
-  .edit-btn {
-  	margin-top: 0px;
-    margin-left: 172px;
-  }
-  .withdraw-btn {
-  	margin-top: 20px;
-    margin-left: 163px;
-  }
-
-  .prof-edit {
-  	width: 80%;
-  	margin: 20px auto;
-  }
-
-  .prof-up {
-  	margin: 20px 0;
-  	font-size: 14px;
-  }
-
-  .update-btn {
-  	color: #5d5e61;
-    background-color: #ffe0ad;
-    font-size: 16px;
-    padding: 5px 10px;
-    position: absolute;
-		bottom: 8%;
-		left: 70%;
-  }
 
   #tag_cloud {
     width: 650px;
@@ -240,13 +170,22 @@
   	border: 1px solid #5d5e61;
   }
 
-  .ds-btn {
-  	margin-top: 0px;
-    margin-left: 400px;
-  }
-  .showback-btn {
-    margin-left: 0px;
-  }
+  .btn-group {
+  	width: 100%;
+      .ds-btn {
+	    	width: 74px;
+	    	margin: 0 auto 10px;
+	    }
+	    .showback-btn {
+	    	width: 102px;
+	    	margin: 0 auto;
+	    }
+
+	    .no-comic-btn {
+	    	width: 102px;
+	    	margin: 10px auto;
+	    }
+	}
 
   #stars {
 	  background-color: #fffde3;
@@ -323,25 +262,24 @@
     margin: 0 auto;
   }
 
-  .no-comic-btn {
-    margin-top: 30px;
-    margin-left: 445px;
+  .search-box-cn {
+  	width: 100%;
+    margin-top: 50px;
   }
 
   .search-form-cn {
-    width: 300px;
-    height: 30px;
-    font-size: 13px;
-    border: 1px solid #5d5e61;
-	  border-radius:50px;
-	  box-shadow: none;
-	  padding-left: 15px;
-	  margin-left: 335px;
-  }
-
-  .search-box-cn {
-    margin-top: 50px;
-  }
+    width: 350px;
+	  margin: 0 auto;
+	    .search-form-cnin {
+	    	width: 300px;
+		    height: 30px;
+		    font-size: 13px;
+		    border: 1px solid #5d5e61;
+			  border-radius:50px;
+			  box-shadow: none;
+			  padding-left: 15px;
+	    }
+	}
 
   .search-btn-cn {
 	  color: #5d5e61;
@@ -354,7 +292,7 @@
 
   .new-messege-head {
   	width: 400px;
-    margin: 30px auto;
+    margin: 30px auto 50px;
     text-align: center;
   }
 
