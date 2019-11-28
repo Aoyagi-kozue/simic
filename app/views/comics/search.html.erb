@@ -55,7 +55,12 @@
     <h1 class="no-comic">該当する作品が見つかりませんでした</h1>
     <p class="no-comic-p">キーワードを変えて、再検索してください</p>
     <%= image_tag ("neko.png"), class: "neko-img" %>
-    <%= link_to '再検索してみる', new_comic_path, class: "btn btn-sm btn-outline-primary no-comic-btn" %>
+
+    <div class="btn-group">
+      <div class="no-comic-btn">
+        <%= link_to '再検索してみる', new_comic_path, class: "btn btn-sm btn-outline-primary" %>
+      </div>
+    </div>
 	<% end %>
 
 </main>

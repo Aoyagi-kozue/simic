@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_11_20_074837) do
+ActiveRecord::Schema.define(version: 2019_11_27_123238) do
 
   create_table "average_caches", force: :cascade do |t|
     t.integer "rater_id"
@@ -38,36 +38,6 @@ ActiveRecord::Schema.define(version: 2019_11_20_074837) do
     t.string "publisher"
     t.text "cover_img"
     t.integer "user_id"
-  end
-
-  create_table "evaluations", force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "comic_id"
-    t.integer "point"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "fav_reviews", force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "review_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "follows", force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "followed_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "mylists", force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "comic_id"
-    t.integer "author_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
   end
 
   create_table "overall_averages", force: :cascade do |t|
@@ -101,20 +71,6 @@ ActiveRecord::Schema.define(version: 2019_11_20_074837) do
     t.datetime "updated_at", null: false
     t.index ["cacheable_id", "cacheable_type"], name: "index_rating_caches_on_cacheable_id_and_cacheable_type"
     t.index ["cacheable_type", "cacheable_id"], name: "index_rating_caches_on_cacheable_type_and_cacheable_id"
-  end
-
-  create_table "reads", force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "comic_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "recommends", force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "comic_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
   end
 
   create_table "reviews", force: :cascade do |t|

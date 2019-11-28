@@ -1,3 +1,80 @@
 // Place all the styles related to the users controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+  .profile-content {
+    width: 70%;
+	  border-radius: 10px;
+	  background-color: white;
+	  margin: 10px auto;
+	  padding: 30px 0;
+  }
+
+  .prof-show {
+  	width: 50%;
+  	margin: 20px auto;
+  	position: relative;
+  }
+
+  .prof-imgname {
+    margin: 20px auto;
+    text-align: center;
+  }
+
+  .prof-img {
+  	margin-bottom: 15px;
+  	text-align: center;
+  }
+
+  .prof-img2 { /*users/edit*/
+  	width: 50%;
+    margin: 20px auto;
+    text-align: center;
+  }
+
+  .name,.messege {
+    margin-bottom: 30px;
+  	  p{
+  	    margin-bottom: 5px;
+	  	  span{
+	  	    margin-left: 50px;
+	      }
+	    }
+	    .tag-form-style {
+			  font-size: 14px;
+			}
+  }
+
+  .btn-group {
+  	width: 100%;
+      .edit-btn {
+	    	width: 58px;
+	    	margin: 0 auto 10px;
+	    }
+	    .withdraw-btn {
+	    	width: 74px;
+	    	margin: 0 auto;
+	    }
+	}
+
+
+
+  .prof-edit {
+  	width: 80%;
+  	margin: 20px auto;
+  }
+
+  .prof-up {
+  	margin: 20px 0;
+  	font-size: 14px;
+  }
+
+  .update-btn {
+  	color: #5d5e61;
+    background-color: #ffe0ad;
+    font-size: 16px;
+    padding: 5px 10px;
+    position: absolute;
+		bottom: 8%;
+		left: 70%;
+  }
