@@ -1,6 +1,6 @@
 class Review < ApplicationRecord
 
-  validates :review_text, presence: true, length: {maximum: 200}
+  validates :review_text, presence: true
   validates :star, presence: true
 
   acts_as_taggable

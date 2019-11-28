@@ -1,5 +1,17 @@
 <main>
   <div class="profile-content">
+    <% if @user.errors.any? %>
+      <div class="error.message alert alert-danger" role="alert">
+        <div id="error_explanation">
+          <h2><%= @user.errors.count %> 件のエラーがあります。</h2>
+          <ul>
+            <% @user.errors.full_messages.each do |msg| %>
+              <li> <%= msg %> </li>
+            <% end %>
+          </ul>
+        </div>
+      </div>
+    <% end %>
     <div class="prof-edit">
       <div class="prof-img2">
         <%= form_for @user, html: { multipart: true } do |f| %>
@@ -13,7 +25,7 @@
       </div>
       <div class="name">
         <p>ニックネーム</p>
-        <p><%= f.text_field :nickname, class: "form-control tag-form-style" %></p>
+        <p><%= f.text_field :nickname, class: "form-control tag-form-style", placeholder: "ニックネームを入力してください" %></p>
       </div>
       <div class="messege">
       	<p>メッセージ</p>

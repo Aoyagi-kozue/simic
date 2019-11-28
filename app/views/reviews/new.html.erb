@@ -1,6 +1,18 @@
 <section>
   <div class="review-content">
-    <% if @user.id==current_user.id %>
+    <% if @review.errors.any? %>
+      <div class="error.message alert alert-danger" role="alert">
+        <div id="error_explanation">
+          <h2><%= @review.errors.count %> 件のエラーがあります。</h2>
+          <ul>
+            <% @review.errors.full_messages.each do |msg| %>
+              <li> <%= msg %> </li>
+            <% end %>
+          </ul>
+        </div>
+      </div>
+    <% end %>
+    <% if @comic.user.id==current_user.id %>
       <h4 class="review-head">レビューする</h4>
       <%= form_for [@comic,@review] do |f| %>
         <div class="review-grop">
