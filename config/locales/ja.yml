@@ -1,10 +1,21 @@
 ja:
   activerecord:
     models:
+      user: ユーザー
+    attributes:
+      user:
+        nickname: ニックネーム
+    models:
       comic: コミック
     attributes:
       comic:
         title: タイトル
+    models:
+      review: レビュー
+    attributes:
+      review:
+        review_text: レビュー
+        star: 評価
   views:
     pagination:
       first: <i class="fas fa-angle-double-left"></i>

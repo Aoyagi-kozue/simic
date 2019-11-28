@@ -58,7 +58,7 @@ class ComicsController < ApplicationController
       }
 
       client = HTTPClient.new
-      request =  client.get(uri,params)
+      request = client.get(uri,params)
         response = JSON.parse(request.body)
         unless ["totalItems"] == 0
           @comics = response["items"]

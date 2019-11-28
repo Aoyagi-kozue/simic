@@ -31,9 +31,9 @@
   <div class="review-user2">
     <%= image_tag @comic.user.prof_image.thumb.url, size:'35x35', class: "prof-image" %>
     <div class="prof-name">
-      <%= link_to @comic.review.user.nickname, user_path(@user.id), class: "prof-name2" %>
+      <%= link_to @comic.user.nickname, user_path(@user.id), class: "prof-name2" %>
       <span class="review-meta">
-        <span class="review-date"><%= @comic.review.created_at.strftime('%Y/%m/%d') %></span>
+        <span class="review-date"><%= @comic.created_at.strftime('%Y/%m/%d') %></span>
       </span>
     </div>
   </div>
